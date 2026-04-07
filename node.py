@@ -26,5 +26,13 @@ def say_world(state: Statement) -> Statement:
 
 builder.add_node("hello_node", say_hello) #alias
 builder.add_node("world_node", say_world)
+from langgraph.graph import START, END
+builder.add_edge(START, "hello_node")
 builder.add_edge("hello_node", "world_node")
+builder.add_edge("world_node", END)
 
+graph = builder.compile()
+
+graph.invoke({
+    "messages": []
+})
