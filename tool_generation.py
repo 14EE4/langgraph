@@ -45,8 +45,8 @@ from langchain_groq import ChatGroq
 load_dotenv()
 
 llm = ChatGroq(
-    model="opanai/gpt-oss-20b",
-    temperature=0.7,
+    model="openai/gpt-oss-20b",
+  
 )
 
 llm_with_tools = llm.bind_tools([
@@ -54,4 +54,9 @@ llm_with_tools = llm.bind_tools([
     calculate_tax
 ])
 
+weather_prompt = "Seoul의 날씨는 어때?"
+tax_prompt = "총 계산 금액이 4750000원이고 세금 비율이 20%인 경우 세금 금액은 얼마인가요?"
+result = llm_with_tools.invoke(weather_prompt)
+
+print("날씨 정보:", result)
 
